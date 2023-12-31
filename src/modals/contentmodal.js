@@ -14,7 +14,7 @@ export default function ContentModal({isOpen, setIsOpen, categories}) {
     const [isTitleError, setIsTitleError] = useState(false);
     const [isUrlError, setIsUrlError] = useState(false);
     const [isImageError, setIsImageError] = useState(false);
-    const [isDescError, setIsDescError] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [videoQuality, setVideoQuality] = useState("");
     const [videoType, setVideoType] = useState("");
 
@@ -34,17 +34,17 @@ export default function ContentModal({isOpen, setIsOpen, categories}) {
     }
 
     const handleDesc = (e) => {
-        setIsDescError(false);
+        setIsError(false);
         setDescription(e.target.value);
     }
 
     const handleVideoQuality = (e) => {
-        setIsDescError(false)
+        setIsError(false)
         setVideoQuality(e.target.value);
     }
 
     const handleVideoType = (e) => {
-        setIsDescError(false)
+        setIsError(false)
         setVideoType(e.target.value);
     }
 
@@ -68,17 +68,17 @@ export default function ContentModal({isOpen, setIsOpen, categories}) {
         }
 
         if (!description || description === "") {
-            setIsDescError(true)
+            setIsError(true)
             return;
         }
 
         if (!videoQuality || videoQuality === ""){
-            setIsDescError(true)
+            setIsError(true)
             return;
         }
 
         if (!videoType || videoType === "") {
-            setIsDescError(true)
+            setIsError(true)
             return;
         }
 
@@ -91,9 +91,7 @@ export default function ContentModal({isOpen, setIsOpen, categories}) {
                 videoQuality: videoQuality,
                 videoType: videoType
             });
-
             setIsOpen(false);
-            console.log(videoQuality);
         } catch (error) {
             console.log("Error adding the category", error)
         }
@@ -176,7 +174,7 @@ export default function ContentModal({isOpen, setIsOpen, categories}) {
                                             <label htmlFor="HD" style={{marginRight: 20}}>HD</label>
                                         </div>
                                         <div className='flex'>
-                                            <div className='w-[80px] text-left'>Formar : </div>                   
+                                            <div className='w-[80px] text-left'>Format : </div>                   
                                             <input type="radio" name="videoType" value="MP4" id="MP4" checked={videoType === "MP4"} onChange={handleVideoType}/>
                                             <label htmlFor="MP4" style={{marginRight: 20}}>MP4</label>
                                             <input type="radio" name="videoType" value="HLS" id="HLS" checked={videoType === "HLS"} onChange={handleVideoType} />
